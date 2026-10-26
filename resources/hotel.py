@@ -52,4 +52,11 @@ class Hotel(Resource):
         global hoteis 
         hoteis = [hotel for hotel in hoteis if hotel["hotel_id"] != id_hotel]
         return { "message": f"Hotel with {id_hotel} deleted "}
-    
+
+
+    @classmethod
+    def find_hotel(cls,id_hotel):
+        hotel= cls.query.filter_by(hotel_id = id_hotel).first()
+        if hotel:
+            return hotel
+        return None
