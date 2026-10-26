@@ -5,11 +5,11 @@ from con_sql import bd
 
 # Variavel representar a minha aplicação
 app = Flask(__name__)
-api = Api(app)
+
 
 #Configurações
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite://hoteis.db"
-app.config["SQLALCHEMY_TRECK_MODIFICATIONS"]
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///hoteis.db"
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 api = Api(app)
 
@@ -19,6 +19,6 @@ api.add_resource(Hotel, "/hoteis/<string:id_hotel>")
 
 if __name__ == "__main__":
     bd.init_app(app)
-    with app.app_context ():
+    with app.app_context():
         bd.create_all()
     app.run(debug=True)
